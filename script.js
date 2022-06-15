@@ -7,6 +7,9 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const navLinks = document.querySelector('.nav__links');
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -32,9 +35,16 @@ document.addEventListener('keydown', function (e) {
 
 ///////////////////////////////////////
 // Button scrolling
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
 
 btnScrollTo.addEventListener('click', () =>
   section1.scrollIntoView({ behavior: 'smooth' })
 );
+
+///////////////////////////////////////
+// Page Navigation
+navLinks.addEventListener('click', e => {
+  e.preventDefault();
+  if (!e.target.classList.contains('nav__link')) return;
+  const id = e.target.getAttribute('href');
+  document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+});
